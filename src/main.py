@@ -1,6 +1,7 @@
 """Main entry point for the Todo List application."""
 
 import sys
+from auth import AuthManager
 
 
 class App:
@@ -9,6 +10,8 @@ class App:
     def __init__(self):
         """Initialize the application."""
         self.running = True
+        self.auth_manager = AuthManager("users.json")
+        self.current_user = None
 
     def display_pre_login_menu(self) -> None:
         """Display the pre-login menu and handle user input."""
@@ -35,14 +38,21 @@ class App:
     def login(self) -> None:
         """Handle user login."""
         print("\n--- Login ---")
-        # TODO: Implement login logic with AuthManager
-        print("Login feature coming soon!")
+        username = self.auth_manager.login()
+        if username:
+            self.current_user = username
+            print("Redirecting to main menu...")
+            # TODO: Implement main menu for authenticated users
+        else:
+            print("Login cancelled or failed.")
 
     def sign_up(self) -> None:
         """Handle user sign up."""
         print("\n--- Sign Up ---")
-        # TODO: Implement sign up logic with AuthManager
-        print("Sign up feature coming soon!")
+        if self.auth_manager.sign_up():
+            print("You can now log in with your new account.")
+        else:
+            print("Sign up failed.")
 
     def exit_app(self) -> None:
         """Exit the application."""
