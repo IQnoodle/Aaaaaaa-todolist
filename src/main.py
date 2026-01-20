@@ -88,7 +88,7 @@ class App:
             print("[7] Mark as Completed (by ID)")
             print("=" * 40)
 
-            choice = input("\nEnter your choice (1-6): ").strip()
+            choice = input("\nEnter your choice (1-7): ").strip()
 
             if choice == "1":
                 self.create_todo()
@@ -105,7 +105,7 @@ class App:
             elif choice == "7":
                 self.mark_completed_by_id()
             else:
-                print("Invalid choice. Please enter 1-6.")
+                print("Invalid choice. Please enter 1-7.")
 
     def create_todo(self) -> None:
         """Create a new todo item."""
@@ -275,6 +275,23 @@ class App:
         """Logout the current user."""
         print(f"\nGoodbye, {self.current_user}!")
         self.current_user = None
+
+    def view_all_todos(self) -> None:
+        """View all todos across all users."""
+        print("\n--- All Todos ---")
+        todos = self.todo_manager.get_all_todos()
+
+        if not todos:
+            print("No todos found.")
+            return
+
+        for idx, todo in enumerate(todos, 1):
+            print(f"\n{idx}. [{todo.status.value}] {todo.title} (Priority: {todo.priority.value})")
+            print(f"   ID: {todo.id}")
+            print(f"   Owner: {todo.owner}")
+            print(f"   Details: {todo.details}")
+            print(f"   Created: {todo.created_at}")
+            print(f"   Updated: {todo.updated_at}")
 
     def exit_app(self) -> None:
         """Exit the application."""

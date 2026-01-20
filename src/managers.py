@@ -41,6 +41,10 @@ class TodoManager:
         todos = self._load_all_todos()
         return [todo for todo in todos if todo.owner == owner]
 
+    def get_all_todos(self) -> List[TodoItem]:
+        """Return all todos stored in the system."""
+        return self._load_all_todos()
+
     def get_todo_by_id(self, todo_id: str) -> Optional[TodoItem]:
         """Retrieve a specific todo by ID."""
         todos = self._load_all_todos()

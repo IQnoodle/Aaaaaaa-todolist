@@ -50,6 +50,10 @@ Stored in `todos.json`. Note that `id` must be unique (UUID).
     - Edit your existing to-do items
     
 - [ ] **5. View all to-do-list items**
+    - Add `get_all_todos()` in `TodoManager`
+    - Add `view_all_todos()` and menu entry in `App`
+    - Print ID, Title, Details, Priority, Status, Owner, Created, Updated
+    - Show "No todos found." when empty
 
 - [ ] **6.View to-do-list item details**
     - Title
